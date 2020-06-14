@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .found {
+         background-color: #ff0
+      }
+   </style>
+</head>
+
+<body>
+   <form id="textsearch">
+      <textarea id="incoming" cols="150" row="10"></textarea>
+      <p>
+         Search pattern: <input id="pattern" type="text" />
+      </p>
+   </form>
+   <button id="searhSubmit">Search for pattern</button>
+   <div id="searchResult"></div>
+
+   <script>
+      document.getElementById("searhSubmit").onclick = function () {
+         var pattern = document.getElementById("pattern").value;
+         var re = new RegExp(pattern, "g")
+
+         var searchString = document.getElementById("incoming").value;
+         var matchArray;
+         var resultString = "<pre>";
+         var first = 0;
+         var last = 0;
+         while((matchArray = re.exec(searchString)) !=null){
+            last = matchArray.index;
+            resultString += searchString.substring(first,last)
+            resultString += "<span class'found'>" + matchArray[0] + "</span>";
+            first= re.lastIndex;
+         }
+         resultString += searchString.substring(first,searchString.length);
+         resultString += '</pre>'
+         document.getElementById("searchResult").innerHTML = resultString
+      }
+   </script>
+
+
+</body>
+
+</html>

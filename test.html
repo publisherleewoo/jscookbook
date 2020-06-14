@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var xmlhttp = new XMLHttpRequest();
+      var url = './text.txt';
+      xmlhttp.open('GET', url, true);
+      xmlhttp.onreadystatechange = function () {
+         if(xmlhttp.readyState == 4 && xmlhttp.status==200){
+            document.body.innerHTML = xmlhttp.responseText
+         }else{
+            document.body.innerHTML="에러"
+         }
+      }
+      xmlhttp.send(null)
+
+   </script>
+
+</body>
+
+</html>
